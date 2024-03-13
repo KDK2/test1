@@ -5,7 +5,7 @@ call mingw32-make.exe -j4 C:\KC\build-untitled-Desktop_Qt_5_12_8_MinGW_64_bit-De
 :: 빌드가 성공적으로 완료되었으면 git 명령 실행
 git add .
 git commit -m "Successful build"
-git push upstream master
+git push test1 master
 goto :end
 
 :error
