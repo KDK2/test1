@@ -208,8 +208,8 @@ void Controller::control()
     {
         double d=0.0;
         double dmax=0.0;
-        int idx=0;
-        for(int i=0;i<pGen.size();i++)
+        int idx=-1;
+        for(int i=1;i<pGen.size();i++)
         {
             d=pGen[i]->calcTemporaryGoal();
             if(d>dmax)
