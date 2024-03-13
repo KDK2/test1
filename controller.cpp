@@ -211,7 +211,7 @@ void Controller::control()
         int idx=0;
         for(int i=0;i<pGen.size();i++)
         {
-            d=pGen[i]->calcTemporaryGoal(rPos);
+            d=pGen[i]->calcTemporaryGoal();
             if(d>dmax)
             {
                 dmax=d;
