@@ -178,18 +178,18 @@ void Controller::control()
     int iLocalmin=-1;
     for(int i=0;i<iter_max-1;i++)
     {
-        std::vector<Generator::path> tempPath=pGen[i]->getPath();
-        if(checkGoal(tempPath,true))
-        {
-            break;
-        }
-        double pg_goal[3];
-        double g_goal[3];
-        getGoal(pg_goal,false);
-        getGoal(g_goal,true);
-        pGen[i]->setPos(pg_goal);
-        pGen[i]->setGoal(g_goal);
-        pGen[i]->gen(Generator::prediction);
+        // std::vector<Generator::path> tempPath=pGen[i]->getPath();
+        // if(checkGoal(tempPath,true))
+        // {
+        //     break;
+        // }
+        // double pg_goal[3];
+        // double g_goal[3];
+        // getGoal(pg_goal,false);
+        // getGoal(g_goal,true);
+        // pGen[i]->setPos(pg_goal);
+        // pGen[i]->setGoal(g_goal);
+        // pGen[i]->gen(Generator::prediction);
         if(pGen[i]->isLocalmin())
         {
             iLocalmin=i;
