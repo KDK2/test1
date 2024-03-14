@@ -174,9 +174,28 @@ void Controller::control()
         double pos[3]={g->rPath[i+1].px,g->rPath[i+1].py,g->rPath[i+1].pq};
         pGen[i]=new Generator(*g,pos);
         pGen[i]->gen(Generator::prediction);
-        pGen[i]->updateSensor(*s);
     }
     int iLocalmin=-1;
+    if(checkGoal(g->rPath,false))
+    {
+        if(checkGoal(g->rPath,true))
+        {
+            return;
+        }
+        double pg_goal[3];
+        double g_goal[3];
+        getGoal(pg_goal,false);
+        getGoal(g_goal,true);
+        Generator *test=new Generator(*g,pg_goal);
+        test->setGoal(g_goal);
+        test->gen(Generator::prediction);
+        if(test->isLocalmin())
+        {
+            iLocalmin=0;
+        }
+    }
+
+    /*
     for(int i=0;i<iter_max-1;i++)
     {
         std::vector<Generator::path> tempPath=pGen[i]->getPath();
@@ -205,6 +224,8 @@ void Controller::control()
             break;
         }
     }
+    */
+
     if(iLocalmin==-1)
     {
         double d=0.0;
