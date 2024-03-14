@@ -241,11 +241,20 @@ void Controller::control()
         //         idx=i;
         //     }
         // }
-        d=g->calcTemporaryGoal();
+        Generator* q;
+        if(test==nullptr)
+        {
+            q=g;
+        }
+        else
+        {
+            q=test;
+        }
+        d=q->calcTemporaryGoal();
         if(!(d<0.01))
         {
             double tem[3];
-            g->getTemporaryGoal(tem);
+            q->getTemporaryGoal(tem);
             setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);
             state=idle;
             // for(int i=0;i<pGen[idx]->rPath.size();i++)
@@ -270,7 +279,7 @@ void Controller::control()
         Generator* q;
         if(test==nullptr)
         {
-            q=pGen[iLocalmin];
+            return;
         }
         else
         {
