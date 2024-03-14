@@ -197,6 +197,7 @@ void Controller::control()
             //     iLocalmin=i;
             //     break;
             // }
+            continue;
         }
         if(pGen[i]->isLocalmin())
         {
