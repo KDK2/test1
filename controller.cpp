@@ -174,11 +174,12 @@ void Controller::control()
         double pos[3]={g->rPath[i+1].px,g->rPath[i+1].py,g->rPath[i+1].pq};
         pGen[i]=new Generator(*g,pos);
         pGen[i]->gen(Generator::prediction);
+        pGen[i]->updateSensor(*s);
     }
     int iLocalmin=-1;
     for(int i=0;i<iter_max-1;i++)
     {
-        std::vector<Generator::path> tempPath=g->getPath();
+        std::vector<Generator::path> tempPath=pGen[i]->getPath();
         if(checkGoal(tempPath,false))
         {
             if(checkGoal(tempPath,true))
