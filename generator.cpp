@@ -254,8 +254,8 @@ void Generator::predict()
         force(pos,tForce,true);
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
-        double n_delta=addNoise(delta);
-        double n_ref  =addNoise(ref,RAD(1.0));
+        double n_delta=addNoise(delta,0.03);
+        double n_ref  =addNoise(ref,RAD(3.0));
         double x=px+n_delta*cos(n_ref);
         double y=py+n_delta*sin(n_ref);
         double q=n_ref;
