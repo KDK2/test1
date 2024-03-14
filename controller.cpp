@@ -190,6 +190,10 @@ void Controller::control()
         test=new Generator(*g,pg_goal);
         test->setGoal(g_goal);
         test->gen(Generator::prediction);
+        for(int i=0;i<test->rPath.size();i++)
+        {
+            g->rPath.push_back(test->rPath[i]);
+        }
         if(test->isLocalmin())
         {
             iLocalmin=0;
