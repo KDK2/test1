@@ -254,12 +254,12 @@ void Generator::predict()
         force(pos,tForce,true);
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
-        double n_delta=addNoise(delta,0.05);
-        double n_ref  =addNoise(ref,RAD(5.0));
-        double x=px+n_delta*cos(n_ref);
-        double y=py+n_delta*sin(n_ref);
+        double x=px+delta*cos(ref);
+        x=addNoise(x);
+        double y=py+delta*sin(ref);
+        y=addNoise(y);
         double q;
-        normalizeAngle(n_ref,q);
+        normalizeAngle(ref,q);
         rPath.push_back({x,y,q});
     }
 }
