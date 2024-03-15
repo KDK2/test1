@@ -189,6 +189,7 @@ void Controller::control()
         getGoal(pg_goal,false);
         getGoal(g_goal,true);
         test=new Generator(*g,pg_goal);
+        test->setPos(pg_goal);
         test->setGoal(g_goal);
         test->gen(Generator::prediction);
         for(int i=0;i<test->rPath.size();i++)
