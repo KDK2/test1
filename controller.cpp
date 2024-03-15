@@ -213,8 +213,13 @@ void Controller::control()
             }
             double pg_goal[3];
             double g_goal[3];
+            double pos[3];
             getGoal(pg_goal,false);
             getGoal(g_goal,true);
+            pos[INDEX_X]=g->getPath()[i].px;
+            pos[INDEX_Y]=g->getPath()[i].py;
+            pos[INDEX_Q]=g->getPath()[i].pq;
+            pGen[i]->setPos(pos);
             pGen[i]->setGoal(g_goal);
             pGen[i]->gen(Generator::prediction);
             if(pGen[i]->isLocalmin())
