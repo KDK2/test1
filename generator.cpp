@@ -224,7 +224,7 @@ void Generator::checkMaxRef(double ref, double &dst)
     double q=rPos[INDEX_Q];
 
     max_error=ip.m_param.eparam.theta_max;
-    error=abs(ref-q);
+    normalizeAngle(abs(ref-q),error);
     if(error<=max_error)
     {
         ret=(max_error-error)/max_error;
