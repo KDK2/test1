@@ -215,7 +215,6 @@ void Controller::control()
             double g_goal[3];
             getGoal(pg_goal,false);
             getGoal(g_goal,true);
-            pGen[i]->setPos(pg_goal);//set pos and clear rPath
             pGen[i]->setGoal(g_goal);
             pGen[i]->gen(Generator::prediction);
             if(pGen[i]->isLocalmin())
