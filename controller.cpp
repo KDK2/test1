@@ -267,7 +267,7 @@ void Controller::control()
             // {
             //     g->rPath.push_back(pGen[idx]->rPath[i]);
             // }
-            updateGenerator();
+            //updateGenerator();
         }
         getGoal(goal,false);
         g->setGoal(goal);
