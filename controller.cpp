@@ -56,7 +56,7 @@ void Controller::setGenerator(Generator *generator)
 
 void Controller::setTemporaryGoal(double x, double y, double theta, double d)
 {
-    if(!(d>temporary.d)) return;
+    //if(!(d>temporary.d)) return;
     temporary.x=x;
     temporary.y=y;
     temporary.theta=theta;
@@ -230,6 +230,8 @@ void Controller::control()
             break;
         }
     }  
+    //i번째에서 checkgoal이 true인 경우 거기에서부터 다시 남은 generator만큼 predict한다.
+    //위의 코드 참고해서 뒤에서 predict하는 친구는 이전의 path를 일부 참조해서 하는 것으로 해야할 것이다.
     if(iLocalmin==-1)
     {
         double d=0.0;
