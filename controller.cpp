@@ -62,6 +62,7 @@ void Controller::setTemporaryGoal(double x, double y, double theta, double d)
     temporary.theta=theta;
     temporary.arrived=false;
     temporary.d=d;
+    s->vq.clear();
     //esum=0.0;
 }
 
