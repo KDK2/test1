@@ -215,7 +215,7 @@ void Controller::control()
             double g_goal[3];
             getGoal(pg_goal,false);
             getGoal(g_goal,true);
-            pGen[i]->setPos(pg_goal);
+            pGen[i]->setPos(pg_goal);//set pos and clear rPath
             pGen[i]->setGoal(g_goal);
             pGen[i]->gen(Generator::prediction);
             if(pGen[i]->isLocalmin())
@@ -259,7 +259,7 @@ void Controller::control()
         {
             double tem[3];
             pGen[idx]->getTemporaryGoal(tem);
-            setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);
+            setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);//temporary goal의 생성 기준이 필요하다...
             state=idle;
             for(int i=0;i<pGen[idx]->rPath.size();i++)
             {
