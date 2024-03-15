@@ -170,39 +170,37 @@ void Controller::control()
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
-    Generator *test=nullptr;
-    // for(int i=0;i<iter_max-1;i++)
-    // {
-    //     double pos[3]={g->rPath[i+1].px,g->rPath[i+1].py,g->rPath[i+1].pq};
-    //     pGen[i]=new Generator(*g,pos);
-    //     pGen[i]->gen(Generator::prediction);
-    // }
-    int iLocalmin=-1;
-    if(checkGoal(g->rPath,false))
+    //Generator *test=nullptr;
+    for(int i=0;i<iter_max-1;i++)
     {
-        if(checkGoal(g->rPath,true))
-        {
-            return;
-        }
-        double pg_goal[3];
-        double g_goal[3];
-        getGoal(pg_goal,false);
-        getGoal(g_goal,true);
-        test=new Generator(*g,pg_goal);
-        test->setPos(pg_goal);
-        test->setGoal(g_goal);
-        test->gen(Generator::prediction);
-        for(int i=0;i<test->rPath.size();i++)
-        {
-            g->rPath.push_back(test->rPath[i]);
-        }
-        if(test->isLocalmin())
-        {
-            iLocalmin=0;
-        }
+        double pos[3]={g->rPath[i+1].px,g->rPath[i+1].py,g->rPath[i+1].pq};
+        pGen[i]=new Generator(*g,pos);
+        pGen[i]->gen(Generator::prediction);
     }
-
-    /*
+    int iLocalmin=-1;
+    // if(checkGoal(g->rPath,false))
+    // {
+    //     if(checkGoal(g->rPath,true))
+    //     {
+    //         return;
+    //     }
+    //     double pg_goal[3];
+    //     double g_goal[3];
+    //     getGoal(pg_goal,false);
+    //     getGoal(g_goal,true);
+    //     test=new Generator(*g,pg_goal);
+    //     test->setPos(pg_goal);
+    //     test->setGoal(g_goal);
+    //     test->gen(Generator::prediction);
+    //     for(int i=0;i<test->rPath.size();i++)
+    //     {
+    //         g->rPath.push_back(test->rPath[i]);
+    //     }
+    //     if(test->isLocalmin())
+    //     {
+    //         iLocalmin=0;
+    //     }
+    // }
     for(int i=0;i<iter_max-1;i++)
     {
         std::vector<Generator::path> tempPath=pGen[i]->getPath();
@@ -230,44 +228,41 @@ void Controller::control()
             iLocalmin=i;
             break;
         }
-    }
-    */
-
+    }  
     if(iLocalmin==-1)
     {
         double d=0.0;
         double dmax=0.0;
         int idx=-1;
-        // for(int i=1;i<pGen.size();i++)
+        for(int i=1;i<pGen.size();i++)
+        {
+            d=pGen[i]->calcTemporaryGoal();
+            if(d>dmax)
+            {
+                dmax=d;
+                idx=i;
+            }
+        }
+        // Generator* q;
+        // if(test==nullptr)
         // {
-        //     d=pGen[i]->calcTemporaryGoal();
-        //     if(d>dmax)
-        //     {
-        //         dmax=d;
-        //         idx=i;
-        //     }
+        //     q=g;
         // }
-        Generator* q;
-        if(test==nullptr)
-        {
-            q=g;
-        }
-        else
-        {
-            q=test;
-        }
-        d=q->calcTemporaryGoal();
+        // else
+        // {
+        //     q=test;
+        // }
         if(!(d<0.01))
         {
             double tem[3];
-            q->getTemporaryGoal(tem);
+            pGen[idx]->getTemporaryGoal(tem);
             setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);
             state=idle;
-            // for(int i=0;i<pGen[idx]->rPath.size();i++)
-            // {
-            //     g->rPath.push_back(pGen[idx]->rPath[i]);
-            // }
-            //updateGenerator();
+            for(int i=0;i<pGen[idx]->rPath.size();i++)
+            {
+                g->rPath.push_back(pGen[idx]->rPath[i]);
+            }
+            updateGenerator();
         }
         getGoal(goal,false);
         g->setGoal(goal);
@@ -282,16 +277,17 @@ void Controller::control()
     else
     {
         double qpos[2];
-        Generator* q;
-        if(test==nullptr)
-        {
-            return;
-        }
-        else
-        {
-            q=test;
-        }
-        q->getStagPos(qpos);
+        // Generator* q;
+        // if(test==nullptr)
+        // {
+        //     return;
+        // }
+        // else
+        // {
+        //     q=test;
+        // }
+        // q->getStagPos(qpos);
+        pGen[iLocalmin]->getStagPos(qpos);
         s->addQuark(qpos[INDEX_X],qpos[INDEX_Y]);
         state=localminimum;
         //localminimum 판단 함수의 추가 기능
