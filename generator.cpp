@@ -87,7 +87,7 @@ void Generator::setPos(double *pos)
 {
     rPos[INDEX_X]=pos[INDEX_X];
     rPos[INDEX_Y]=pos[INDEX_Y];
-    rPos[INDEX_Q]=pos[INDEX_Q];
+    normalizeAngle(pos[INDEX_Q], rPos[INDEX_Q]);
 
     rPath.clear();
     rPath.push_back({rPos[INDEX_X],rPos[INDEX_Y],rPos[INDEX_Q]});
@@ -258,8 +258,8 @@ void Generator::predict()
         double n_ref  =addNoise(ref,RAD(3.0));
         double x=px+n_delta*cos(n_ref);
         double y=py+n_delta*sin(n_ref);
-        double q=n_ref;
-
+        double q;
+        normalizeAngle(n_ref,q);
         rPath.push_back({x,y,q});
     }
 }
@@ -327,6 +327,19 @@ void Generator::getTemporaryGoal(double *pos)
     pos[INDEX_X]=temporaryGoal[INDEX_X];
     pos[INDEX_Y]=temporaryGoal[INDEX_Y];
     pos[INDEX_Q]=temporaryGoal[INDEX_Q];
+}
+
+void Generator::normalizeAngle(double angle, double &dst)
+{
+    // Normalize angle to be within the range [0, 2π)
+    angle = fmod(angle, 2.0 * M_PI);
+    // Shift angle to be within the range [-π, π)
+    if (angle > M_PI) {
+        angle -= 2.0 * M_PI;
+    } else if (angle < -M_PI) {
+        angle += 2.0 * M_PI;
+    }
+    dst=angle;
 }
 
 double Generator::addNoise(double src, double noiseLevel)

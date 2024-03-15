@@ -145,7 +145,8 @@ void Controller::velocity(double *src, double &v, double &w)
     double w_max=g->ip.m_param.vparam.w_max;
     double v_ref=src[INDEX_REF_V];
     double q_ref=src[INDEX_REF_Q];
-    double e=q_ref-rPos[INDEX_Q];
+    double e;
+    g->normalizeAngle(q_ref-rPos[INDEX_Q],e);
 
     esum+=e;
     checkMaxVelocity(v_ref,v_max,v);
