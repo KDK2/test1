@@ -291,9 +291,14 @@ void Controller::control()
         //     q=test;
         // }
         // q->getStagPos(qpos);
+
+        if(state==idle)
+        {
+            s->vq.clear();
+            state=localminimum;
+        }
         pGen[iLocalmin]->getStagPos(qpos);
         s->addQuark(qpos[INDEX_X],qpos[INDEX_Y]);
-        state=localminimum;
         //localminimum 판단 함수의 추가 기능
         //1. temporary goal 도착을 예측한다.
         //2. temporary goal에 도착한다는 예측이 나오면 해당하는 g는 temporary goal을 시작 위치로 하는
