@@ -294,7 +294,6 @@ void Controller::control()
 
         if(state==idle)
         {
-            s->vq.clear();
             state=localminimum;
         }
         pGen[iLocalmin]->getStagPos(qpos);
