@@ -259,7 +259,7 @@ void Generator::predict()
         double y=py+delta*sin(ref);
         y=addNoise(y,0.03);
         double q;
-        ref=addNoise(ref,RAD(3.0));
+        //ref=addNoise(ref,RAD(3.0));
         normalizeAngle(ref,q);
         rPath.push_back({x,y,q});
     }
