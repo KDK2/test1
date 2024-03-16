@@ -41,23 +41,23 @@ Robot::Robot():
     double cgoal[SIZE_STATE];
 
     con.getPos(pos);
-    con.addGoal(3.0,3.0,0.0);//add global goal
+    con.addGoal(6.0,8.0,0.0);//add global goal
     con.getGoal(cgoal,true);
 
     sen=new Sensor(is);
-    sen->addLObs(1.8,2.52,1.79,2.72);
-    sen->addLObs(1.8,2.52,2.5,2.5);
-    sen->addLObs(2.5,2.5,2.48,1.8);
-    sen->addLObs(2.48,1.8,2.68,1.81);
+    // sen->addLObs(1.8,2.52,1.79,2.72);
+    // sen->addLObs(1.8,2.52,2.5,2.5);
+    // sen->addLObs(2.5,2.5,2.48,1.8);
+    // sen->addLObs(2.48,1.8,2.68,1.81);
 
-    // sen->addCObs(2.0,6.0,1.0);
-    // sen->addCObs(3.0,1.5,1.0);
-    // sen->addCObs(4.0,4.8,0.8);
-    // sen->addCObs(3.0,6.0,1.0);
-    // sen->addCObs(4.0,6.0,1.0);
-    // sen->addCObs(4.0,1.5,1.0);
-    // sen->addCObs(5.0,6.0,1.0);
-    // sen->addCObs(6.0,6.0,1.0);
+    sen->addCObs(2.0,6.0,1.0);
+    sen->addCObs(3.0,1.5,1.0);
+    sen->addCObs(4.0,4.8,0.8);
+    sen->addCObs(3.0,6.0,1.0);
+    sen->addCObs(4.0,6.0,1.0);
+    sen->addCObs(4.0,1.5,1.0);
+    sen->addCObs(5.0,6.0,1.0);
+    sen->addCObs(6.0,6.0,1.0);
 
     // sen->addLObs(1.7,1.7,1.55,1.85);
     // sen->addLObs(1.7,1.7,2.0,2.0);
