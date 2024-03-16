@@ -167,7 +167,7 @@ void Controller::control()
 
     std::vector<Generator*> pGen(iter_max-1);//future genarator
     double goal[3];
-    getGoal(goal,false);
+    getGoal(goal,true);
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
@@ -205,29 +205,26 @@ void Controller::control()
     for(int i=0;i<iter_max-1;i++)
     {
         std::vector<Generator::path> tempPath=pGen[i]->getPath();
-        if(checkGoal(tempPath,false))
+        if(checkGoal(tempPath,true))
         {
-            if(checkGoal(tempPath,true))
-            {
-                break;
-            }
-            double pg_goal[3];
-            double g_goal[3];
-            double pos[3];
-            getGoal(pg_goal,false);
-            getGoal(g_goal,true);
-            pos[INDEX_X]=g->getPath()[i].px;
-            pos[INDEX_Y]=g->getPath()[i].py;
-            pos[INDEX_Q]=g->getPath()[i].pq;
-            pGen[i]->setPos(pos);
-            pGen[i]->setGoal(g_goal);
-            pGen[i]->gen(Generator::prediction);
-            if(pGen[i]->isLocalmin())
-            {
-                iLocalmin=i;
-                break;
-            }
+            break;
         }
+            // double pg_goal[3];
+            // double g_goal[3];
+            // double pos[3];
+            // getGoal(pg_goal,false);
+            // getGoal(g_goal,true);
+            // pos[INDEX_X]=g->getPath()[i].px;
+            // pos[INDEX_Y]=g->getPath()[i].py;
+            // pos[INDEX_Q]=g->getPath()[i].pq;
+            // pGen[i]->setPos(pos);
+            // pGen[i]->setGoal(g_goal);
+            // pGen[i]->gen(Generator::prediction);
+            // if(pGen[i]->isLocalmin())
+            // {
+            //     iLocalmin=i;
+            //     break;
+            // }
         if(pGen[i]->isLocalmin())
         {
             iLocalmin=i;
