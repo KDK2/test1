@@ -258,7 +258,7 @@ void Generator::predict(bool bStag)
         double alpha;
         checkMaxRef(ref,alpha);
         ref=addNoise(ref,RAD(3.0));
-        delta*=alpha;
+        delta=delta*alpha;
         double x=px+delta*cos(ref);
         //x=addNoise(x,0.01);
         double y=py+delta*sin(ref);
