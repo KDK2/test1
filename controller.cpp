@@ -187,17 +187,6 @@ void Controller::control()
     if(iLocalmin==-1)
     {
         double d=0.0;
-        // double dmax=0.0;
-        // int idx=-1;
-        // for(int i=1;i<pGen.size();i++)
-        // {
-        //     d=pGen[i]->calcTemporaryGoal();
-        //     if(d>dmax)
-        //     {
-        //         dmax=d;
-        //         idx=i;
-        //     }
-        // }
 
         d=g->calcTemporaryGoal();
 
@@ -207,11 +196,6 @@ void Controller::control()
             g->getTemporaryGoal(tem);
             setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);//temporary goal의 생성 기준이 필요하다...
             state=idle;
-            /*
-            for(int i=0;i<pGen[idx]->rPath.size();i++)
-            {
-                g->rPath.push_back(pGen->getPath()[i]);
-            }*/
             updateGenerator();
         }
         getGoal(goal,false);
