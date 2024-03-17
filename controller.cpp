@@ -103,7 +103,7 @@ void Controller::checkGoal()
         {
             temporary.arrived=true;
             temporary.d=0.0;
-            s->vq.clear();
+            //s->vq.clear();
         }
         return;
     }
