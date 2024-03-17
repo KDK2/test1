@@ -109,16 +109,17 @@ void Generator::attForce(double* pos, double* f)
     double q_v=ip.f_param.mparam.q_v;
     double q_g=ip.f_param.aparam.q_g;
 
-    if(dist>cutoff)
-    {
-        f[INDEX_X]=-((k_vg*q_v*q_g)/(dist*dist))*(dx/dist);
-        f[INDEX_Y]=-((k_vg*q_v*q_g)/(dist*dist))*(dy/dist);
-    }
+    f[INDEX_X]=-((k_vg*q_v*q_g)/(dist*dist))*(dx/dist);
+    f[INDEX_Y]=-((k_vg*q_v*q_g)/(dist*dist))*(dy/dist);
+    // if(dist>cutoff)
+    // {
+    // }
+    /*
     else
     {
         f[INDEX_X]=-((k_vg*q_v*q_g))*(dx);
         f[INDEX_Y]=-((k_vg*q_v*q_g))*(dy);
-    }
+    }*/
 }
 
 void Generator::repForce(int i, double* f)
