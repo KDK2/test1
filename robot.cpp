@@ -27,8 +27,8 @@ Robot::Robot():
     ig.f_param.qparam.k_vq=5.0*ig.f_param.rparam.k_vo;
     ig.f_param.qparam.q_q=-1.0;
 
-    ig.p_param.lparam.delta=0.05;
-    ig.p_param.lparam.lam=3.0;
+    ig.p_param.lparam.delta=0.03;
+    ig.p_param.lparam.lam=2.0;
     ig.p_param.lparam.lam_stagnation=0.25*ig.p_param.lparam.lam;
     ig.p_param.lparam.radius=0.25*ig.p_param.lparam.lam_stagnation;
 
