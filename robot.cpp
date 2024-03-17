@@ -45,10 +45,12 @@ Robot::Robot():
     con.getGoal(cgoal,true);
 
     sen=new Sensor(is);
+    sen->addLObs(1.79,2.72,2.66,2.74);
     sen->addLObs(1.8,2.52,1.79,2.72);
     sen->addLObs(1.8,2.52,2.5,2.5);
     sen->addLObs(2.5,2.5,2.48,1.8);
     sen->addLObs(2.48,1.8,2.68,1.81);
+    sen->addLObs(2.68,1.81,2.66,2.74);
 
     // sen->addCObs(2.0,6.0,1.0);
     // sen->addCObs(3.0,1.5,1.0);
@@ -69,7 +71,6 @@ Robot::Robot():
 
     act=new Actuator(ia);
     gen=new Generator(ig,*sen,pos,cgoal);
-
 
     con.setSensor(sen);
     con.setActuator(act);
