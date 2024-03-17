@@ -60,6 +60,7 @@ Robot::Robot():
     // sen->addCObs(6.0,6.0,1.0);
 
     sen->addLObs(1.7,1.7,1.55,1.85);
+    sen->addLObs(1.55,1.85,1.85,2.15);
     sen->addLObs(1.7,1.7,2.0,2.0);
     sen->addLObs(2.0,2.0,2.4,1.6);
     sen->addLObs(2.4,1.6,2.1,1.3);
