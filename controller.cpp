@@ -171,7 +171,7 @@ void Controller::control()
     getGoal(goal,true);
     rPos[INDEX_X]=g->addNoise(rPos[INDEX_X],0.001);
     rPos[INDEX_Y]=g->addNoise(rPos[INDEX_Y],0.001);
-    rPos[INDEX_Q]=g->addNoise(rPos[INDEX_Q],RAD(3.0));
+    rPos[INDEX_Q]=g->addNoise(rPos[INDEX_Q],RAD(0.1));
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
