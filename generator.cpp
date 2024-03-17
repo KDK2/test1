@@ -89,6 +89,9 @@ void Generator::setPos(double *pos)
     rPos[INDEX_Y]=pos[INDEX_Y];
     normalizeAngle(pos[INDEX_Q], rPos[INDEX_Q]);
 
+    rPos[INDEX_X]=addNoise(rPos[INDEX_X],0.05);
+    rPos[INDEX_Y]=addNoise(rPos[INDEX_Y],0.05);
+    rPos[INDEX_Q]=addNoise(rPos[INDEX_Q],RAD(3.0));
     rPath.clear();
     rPath.push_back({rPos[INDEX_X],rPos[INDEX_Y],rPos[INDEX_Q]});
 }
