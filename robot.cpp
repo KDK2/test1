@@ -52,7 +52,7 @@ Robot::Robot():
 
     sen->addCObs(2.0,6.0,1.0);
     sen->addCObs(3.0,1.5,1.0);
-    sen->addCObs(4.0,4.8,0.8);
+    sen->addCObs(4.2,4.8,0.8);
     sen->addCObs(3.0,6.0,1.0);
     sen->addCObs(4.0,6.0,1.0);
     sen->addCObs(4.0,1.5,1.0);
