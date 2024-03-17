@@ -10,7 +10,7 @@ Robot::Robot():
 
     ia.d=0.08;
     ia.m=10.0;
-    ia.dt=0.01;
+    ia.dt=0.03;
     ia.radius=0.1;
 
     is.qparam.max_quark=50;
