@@ -154,7 +154,7 @@ void Controller::velocity(double *src, double &v, double &w)
     checkMaxVelocity(v_ref,v_max,v);
     checkMaxVelocity(kp*e+ki*esum,w_max,w);
 }
-
+#define RAD(x) ((x)*M_PI/180.0)
 void Controller::control()
 {
     if(isArrived())
