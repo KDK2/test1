@@ -261,7 +261,7 @@ void Generator::predict(bool bStag)
         y=addNoise(y,0.01);
         double q;
         normalizeAngle(ref,q);
-        q=addNoise(q,RAD(3.0));
+        //q=addNoise(q,RAD(3.0));
         rPath.push_back({x,y,q});
     }
 }
