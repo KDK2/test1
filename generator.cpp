@@ -256,12 +256,12 @@ void Generator::predict(bool bStag)
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
         double x=px+delta*cos(ref);
-        x=addNoise(x,0.03);
+        x=addNoise(x,0.01);
         double y=py+delta*sin(ref);
-        y=addNoise(y,0.03);
+        y=addNoise(y,0.01);
         double q;
         normalizeAngle(ref,q);
-        q=addNoise(q,RAD(5.0));
+        q=addNoise(q,RAD(3.0));
         rPath.push_back({x,y,q});
     }
 }
