@@ -177,13 +177,12 @@ void Controller::control()
     pGen=new Generator(*g,pos);
     pGen->gen(Generator::stagnation);
     int iLocalmin=-1;
-    if(checkGoal(pGen->getPath(),true))
+    if(!checkGoal(pGen->getPath(),true))
     {
-
-    }
-    if(pGen->isLocalmin())
-    {
-        iLocalmin=0;
+        if(pGen->isLocalmin())
+        {
+            iLocalmin=0;
+        }
     }
     if(iLocalmin==-1)
     {
