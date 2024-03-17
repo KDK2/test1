@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget->resize(950,950);
 
     connect(&timer, &QTimer::timeout, this, &MainWindow::slotTimeout);
-    timer.start(10);
+    timer.start(1);
 }
 
 MainWindow::~MainWindow()
