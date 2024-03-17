@@ -255,7 +255,10 @@ void Generator::predict(bool bStag)
         force(pos,tForce,true);
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
+        double alpha;
+        checkMaxRef(ref,alpha);
         ref=addNoise(ref,RAD(3.0));
+        delta*=alpha;
         double x=px+delta*cos(ref);
         //x=addNoise(x,0.01);
         double y=py+delta*sin(ref);
