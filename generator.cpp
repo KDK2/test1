@@ -211,7 +211,7 @@ void Generator::ref()
     double norm,ref,alpha;
     s->sense(rPos);
     double tForce[CORD_SIZE]={0.0,0.0};
-    force(rPos,tForce,true);
+    force(rPos,tForce,false);
     norm=sqrt(pow(tForce[INDEX_X],2)+pow(tForce[INDEX_Y],2));
     ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
     checkMaxRef(ref,alpha);
