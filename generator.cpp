@@ -45,9 +45,9 @@ Generator::Generator(const Generator &gen, const double *pos)
     ip=gen.ip;
     s=new Sensor(*gen.s);
 
-    rPos[INDEX_X]=pos[INDEX_X];
-    rPos[INDEX_Y]=pos[INDEX_Y];
-    rPos[INDEX_Q]=pos[INDEX_Q];
+    rPos[INDEX_X]=addNoise(pos[INDEX_X],0.03);
+    rPos[INDEX_Y]=addNoise(pos[INDEX_Y],0.03);
+    rPos[INDEX_Q]=addNoise(pos[INDEX_Q],RAD(3.0));
 
     gPos[INDEX_X]=gen.gPos[INDEX_X];
     gPos[INDEX_Y]=gen.gPos[INDEX_Y];

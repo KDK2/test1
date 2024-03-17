@@ -208,6 +208,7 @@ void Controller::control()
         velocity(ref,v,w);
         a->update(rPos,rPos,v,w);
     }
+    //stagnation판단하는 쪽에 랜덤을 넣어줘야하나..
     else
     {
         double qpos[2];
