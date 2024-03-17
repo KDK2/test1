@@ -33,7 +33,7 @@ Robot::Robot():
     ig.p_param.lparam.lam_stagnation=0.25*ig.p_param.lparam.lam;
     ig.p_param.lparam.radius=0.25*ig.p_param.lparam.lam_stagnation;
 
-    ig.m_param.eparam.theta_max=30.0*M_PI/180.0;
+    ig.m_param.eparam.theta_max=15.0*M_PI/180.0;
     ig.m_param.eparam.tolorance=0.2;
     ig.m_param.vparam.v_max=0.2;
     ig.m_param.vparam.w_max=8.0;
