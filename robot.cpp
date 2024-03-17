@@ -69,6 +69,7 @@ Robot::Robot():
     sen->addLObs(2.4,1.6,2.1,1.3);
     sen->addLObs(2.1,1.3,2.25,1.15);
     sen->addLObs(2.25,1.15,2.55,1.45);
+    sen->addLObs(2.55,1.45,1.85,2.15);
 
     act=new Actuator(ia);
     gen=new Generator(ig,*sen,pos,cgoal);
