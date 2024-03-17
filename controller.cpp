@@ -56,14 +56,14 @@ void Controller::setGenerator(Generator *generator)
 
 void Controller::setTemporaryGoal(double x, double y, double theta, double d)
 {
-    //if(!(d>temporary.d)) return;
+    if(!(d>temporary.d)) return;
     temporary.x=x;
     temporary.y=y;
     temporary.theta=theta;
     temporary.arrived=false;
     temporary.d=d;
     //s->vq.clear();
-    //esum=0.0;
+    esum=0.0;
 }
 
 void Controller::addGoal(double x, double y, double theta)

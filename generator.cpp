@@ -242,7 +242,7 @@ void Generator::predict(bool bStag)
     double lam=ip.p_param.lparam.lam;
     double lam_stagnation=ip.p_param.lparam.lam_stagnation;
     double delta=ip.p_param.lparam.delta;
-    double iter_max=bStag?lam_stagnation/delta:(lam-lam_stagnation)/delta;
+    double iter_max=bStag?lam_stagnation/delta:(lam)/delta;
 
     for(int i=1;i<iter_max;i++)
     {
