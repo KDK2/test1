@@ -169,18 +169,18 @@ void Controller::control()
     Generator* pGen;//stagnation genarator
     double goal[3];
     getGoal(goal,true);
-    // rPos[INDEX_X]=g->addNoise(rPos[INDEX_X],0.001);
-    // rPos[INDEX_Y]=g->addNoise(rPos[INDEX_Y],0.001);
-    // rPos[INDEX_Q]=g->addNoise(rPos[INDEX_Q],RAD(0.1));
+    rPos[INDEX_X]=g->addNoise(rPos[INDEX_X],0.001);
+    rPos[INDEX_Y]=g->addNoise(rPos[INDEX_Y],0.001);
+    rPos[INDEX_Q]=g->addNoise(rPos[INDEX_Q],RAD(0.1));
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
     //Generator *test=nullptr;
 
     double pos[3]={g->rPath.back().px,g->rPath.back().py,g->rPath.back().pq};
-    pos[INDEX_Q]=g->addNoise(pos[INDEX_Q],RAD(3.0));
-    pos[INDEX_X]=g->addNoise(pos[INDEX_X],0.05);
-    pos[INDEX_Y]=g->addNoise(pos[INDEX_Y],0.05);
+    // pos[INDEX_Q]=g->addNoise(pos[INDEX_Q],RAD(3.0));
+    // pos[INDEX_X]=g->addNoise(pos[INDEX_X],0.05);
+    // pos[INDEX_Y]=g->addNoise(pos[INDEX_Y],0.05);
     pGen=new Generator(*g,pos);
     pGen->gen(Generator::stagnation);
     int iLocalmin=-1;
