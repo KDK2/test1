@@ -22,7 +22,7 @@ Robot::Robot():
     ig.f_param.aparam.q_g=5.0;
     ig.f_param.mparam.q_v=-1.0;
     ig.f_param.rparam.d_o=0.2;
-    ig.f_param.rparam.d_oq=0.5;
+    ig.f_param.rparam.d_oq=0.4;
     ig.f_param.rparam.k_vo=1.0/(static_cast<double>(is.sparam.num_sensors)+85);
     ig.f_param.rparam.q_o=-1.0;
     ig.f_param.qparam.k_vq=5.0*ig.f_param.rparam.k_vo;//d_o와 묶여있는 변수다.
@@ -53,9 +53,9 @@ Robot::Robot():
     // sen->addLObs(2.48,1.8,2.68,1.81);
     // sen->addLObs(2.68,1.81,2.66,2.74);
 
-    sen->addCObs(0.0,3.0,1.0);
-    sen->addCObs(-1.0,3.0,1.0);
-    sen->addCObs(1.0,3.0,1.0);
+    sen->addCObs(0.0,3.0,0.6);
+    sen->addCObs(-1.0,3.0,0.6);
+    sen->addCObs(1.0,3.0,0.6);
 
     // sen->addLObs(1.7,1.7,1.55,1.85);
     // sen->addLObs(1.55,1.85,1.85,2.15);
