@@ -185,8 +185,8 @@ void MainWindow::updateUi()
     customPlot->addGraph();
     customPlot->xAxis->setLabel("x");
     customPlot->yAxis->setLabel("y");
-    customPlot->xAxis->setRange(m_robot_data.x-0.5, m_robot_data.x+3.0);
-    customPlot->yAxis->setRange(m_robot_data.y-0.5, m_robot_data.y+3.0);
+    customPlot->xAxis->setRange(m_robot_data.x-3.0, m_robot_data.x+3.0);
+    customPlot->yAxis->setRange(m_robot_data.y-3.0, m_robot_data.y+3.0);
     // customPlot->xAxis->setRange(0.0, 10.0);
     // customPlot->yAxis->setRange(0.0, 10.0);
 
