@@ -19,7 +19,7 @@ Robot::Robot():
     is.sparam.radius=ia.radius;
 
     ig.f_param.aparam.k_vg=1.0;
-    ig.f_param.aparam.q_g=10.0;
+    ig.f_param.aparam.q_g=4.0;
     ig.f_param.mparam.q_v=-1.0;
     ig.f_param.rparam.d_o=0.2;
     ig.f_param.rparam.k_vo=1.0/(static_cast<double>(is.sparam.num_sensors));
