@@ -255,7 +255,7 @@ void Generator::predict(bool bStag)
         force(pos,tForce,true);
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
-        ref=addNoise(ref,RAD(5.0));
+        ref=addNoise(ref,RAD(10.0));
         double x=px+delta*cos(ref);
         double y=py+delta*sin(ref);
         double q;
