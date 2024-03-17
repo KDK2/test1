@@ -173,7 +173,7 @@ void Controller::control()
     g->gen(Generator::prediction);
     //Generator *test=nullptr;
 
-    double pos[3]={g->rPath.cend()->px,g->rPath.cend()->py,g->rPath.cend()->pq};
+    double pos[3]={g->rPath.back().px,g->rPath.back().py,g->rPath.back().pq};
     pGen=new Generator(*g,pos);
     pGen->gen(Generator::stagnation);
     int iLocalmin=-1;
