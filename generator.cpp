@@ -236,12 +236,12 @@ void Generator::checkMaxRef(double ref, double &dst)
     dst=ret;
 }
 
-void Generator::predict()
+void Generator::predict(bool bStag)
 {
     double lam=ip.p_param.lparam.lam;
     double lam_stagnation=ip.p_param.lparam.lam_stagnation;
     double delta=ip.p_param.lparam.delta;
-    double iter_max=(lam-lam_stagnation)/delta;
+    double iter_max=bStag?lam_stagnation/delta:(lam-lam_stagnation)/delta;
 
     for(int i=1;i<iter_max;i++)
     {
@@ -292,12 +292,17 @@ void Generator::gen(genmode mode)
     genmode m=mode;
     if(genmode::prediction==m)
     {
-        predict();
+        predict(false);
         detLocalmin();
     }
     if(genmode::reference==m)
     {
         ref();
+    }
+    if(genmode::stagnation==m)
+    {
+        predict(true);
+        detLocalmin();
     }
 }
 

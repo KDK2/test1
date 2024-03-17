@@ -67,7 +67,7 @@ public:
         double px,py,pq;
     };
 
-    enum genmode{reference,prediction};//artificial potential field, predict artificial potential field
+    enum genmode{reference,prediction,stagnation};//artificial potential field, predict artificial potential field
 
     Generator(const info in, const Sensor& sen, const double* pos, const double* gpos);
     Generator(const Generator& gen);
@@ -98,7 +98,7 @@ protected:
     void force(double* pos, double* f,bool bQuark);
     void ref();
     void checkMaxRef(double ref, double& dst);
-    void predict();
+    void predict(bool bStag);
     void detLocalmin();
 private:
     Sensor* s;

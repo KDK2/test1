@@ -163,109 +163,56 @@ void Controller::control()
     double lam=g->ip.p_param.lparam.lam;
     double lam_stagnation=g->ip.p_param.lparam.lam_stagnation;
     double delta=g->ip.p_param.lparam.delta;
-    int    iter_max=(lam-lam_stagnation)/delta;
+    int    iter_max=(lam_stagnation)/delta;
 
-    std::vector<Generator*> pGen(iter_max-1);//future genarator
+    Generator* pGen;//stagnation genarator
     double goal[3];
     getGoal(goal,true);
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
     //Generator *test=nullptr;
-    for(int i=0;i<iter_max-1;i++)
-    {
-        double pos[3]={g->rPath[i+1].px,g->rPath[i+1].py,g->rPath[i+1].pq};
-        pGen[i]=new Generator(*g,pos);
-        pGen[i]->gen(Generator::prediction);
-    }
+
+    double pos[3]={g->rPath.cend()->px,g->rPath.cend()->py,g->rPath.cend()->pq};
+    pGen=new Generator(*g,pos);
+    pGen->gen(Generator::stagnation);
     int iLocalmin=-1;
-    // if(checkGoal(g->rPath,false))
-    // {
-    //     if(checkGoal(g->rPath,true))
-    //     {
-    //         return;
-    //     }
-    //     double pg_goal[3];
-    //     double g_goal[3];
-    //     getGoal(pg_goal,false);
-    //     getGoal(g_goal,true);
-    //     test=new Generator(*g,pg_goal);
-    //     test->setPos(pg_goal);
-    //     test->setGoal(g_goal);
-    //     test->gen(Generator::prediction);
-    //     for(int i=0;i<test->rPath.size();i++)
-    //     {
-    //         g->rPath.push_back(test->rPath[i]);
-    //     }
-    //     if(test->isLocalmin())
-    //     {
-    //         iLocalmin=0;
-    //     }
-    // }
-    for(int i=0;i<iter_max-1;i++)
+    if(checkGoal(pGen->getPath(),true))
     {
-        std::vector<Generator::path> tempPath=pGen[i]->getPath();
-        if(checkGoal(tempPath,true))
-        {
-            break;
-        }
-            // double pg_goal[3];
-            // double g_goal[3];
-            // double pos[3];
-            // getGoal(pg_goal,false);
-            // getGoal(g_goal,true);
-            // pos[INDEX_X]=g->getPath()[i].px;
-            // pos[INDEX_Y]=g->getPath()[i].py;
-            // pos[INDEX_Q]=g->getPath()[i].pq;
-            // pGen[i]->setPos(pos);
-            // pGen[i]->setGoal(g_goal);
-            // pGen[i]->gen(Generator::prediction);
-            // if(pGen[i]->isLocalmin())
-            // {
-            //     iLocalmin=i;
-            //     break;
-            // }
-        if(pGen[i]->isLocalmin())
-        {
-            iLocalmin=i;
-            break;
-        }
-    }  
-    //i번째에서 checkgoal이 true인 경우 거기에서부터 다시 남은 generator만큼 predict한다.
-    //위의 코드 참고해서 뒤에서 predict하는 친구는 이전의 path를 일부 참조해서 하는 것으로 해야할 것이다.
+
+    }
+    if(pGen->isLocalmin())
+    {
+        iLocalmin=0;
+    }
     if(iLocalmin==-1)
     {
         double d=0.0;
-        double dmax=0.0;
-        int idx=-1;
-        for(int i=1;i<pGen.size();i++)
-        {
-            d=pGen[i]->calcTemporaryGoal();
-            if(d>dmax)
-            {
-                dmax=d;
-                idx=i;
-            }
-        }
-        // Generator* q;
-        // if(test==nullptr)
+        // double dmax=0.0;
+        // int idx=-1;
+        // for(int i=1;i<pGen.size();i++)
         // {
-        //     q=g;
+        //     d=pGen[i]->calcTemporaryGoal();
+        //     if(d>dmax)
+        //     {
+        //         dmax=d;
+        //         idx=i;
+        //     }
         // }
-        // else
-        // {
-        //     q=test;
-        // }
+
+        d=g->calcTemporaryGoal();
+
         if(!(d<0.01))
         {
             double tem[3];
-            pGen[idx]->getTemporaryGoal(tem);
+            g->getTemporaryGoal(tem);
             setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);//temporary goal의 생성 기준이 필요하다...
             state=idle;
+            /*
             for(int i=0;i<pGen[idx]->rPath.size();i++)
             {
-                g->rPath.push_back(pGen[idx]->rPath[i]);
-            }
+                g->rPath.push_back(pGen->getPath()[i]);
+            }*/
             updateGenerator();
         }
         getGoal(goal,false);
@@ -281,22 +228,12 @@ void Controller::control()
     else
     {
         double qpos[2];
-        // Generator* q;
-        // if(test==nullptr)
-        // {
-        //     return;
-        // }
-        // else
-        // {
-        //     q=test;
-        // }
-        // q->getStagPos(qpos);
 
         if(state==idle)
         {
             state=localminimum;
         }
-        pGen[iLocalmin]->getStagPos(qpos);
+        pGen->getStagPos(qpos);
         s->addQuark(qpos[INDEX_X],qpos[INDEX_Y]);
         //localminimum 판단 함수의 추가 기능
         //1. temporary goal 도착을 예측한다.
