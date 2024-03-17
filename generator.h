@@ -25,7 +25,7 @@ public:
             };
             struct rep_param
             {
-                double k_vo, q_o, d_o;
+                double k_vo, q_o, d_o, d_oq;
             };
             struct quark_param
             {

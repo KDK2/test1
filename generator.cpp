@@ -149,13 +149,13 @@ void Generator::repForce(int i, double* f)
 
 void Generator::quarkForce(int i, double* f)
 {
-    double d_o=ip.f_param.rparam.d_o;
+    double d_oq=ip.f_param.rparam.d_oq;
     double k_vq=ip.f_param.qparam.k_vq;
     double q_v=ip.f_param.mparam.q_v;
     double q_q=ip.f_param.qparam.q_q;
     double dist=s->vq[i].sense.dist;
     double v_rq[CORD_SIZE]={s->vq[i].sense.vx,s->vq[i].sense.vy};
-    if(dist<=d_o)
+    if(dist<=d_oq)
     {
         f[INDEX_X]=((k_vq*q_v*q_q)/(dist*dist))*(v_rq[INDEX_X]);
         f[INDEX_Y]=((k_vq*q_v*q_q)/(dist*dist))*(v_rq[INDEX_Y]);
