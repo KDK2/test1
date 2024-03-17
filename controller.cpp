@@ -176,8 +176,8 @@ void Controller::control()
 
     double pos[3]={g->rPath.back().px,g->rPath.back().py,g->rPath.back().pq};
     pos[INDEX_Q]=g->addNoise(pos[INDEX_Q],RAD(3.0));
-    pos[INDEX_X]=g->addNoise(pos[INDEX_X],0.02);
-    pos[INDEX_Y]=g->addNoise(pos[INDEX_Y],0.02);
+    pos[INDEX_X]=g->addNoise(pos[INDEX_X],0.05);
+    pos[INDEX_Y]=g->addNoise(pos[INDEX_Y],0.05);
     pGen=new Generator(*g,pos);
     pGen->gen(Generator::stagnation);
     int iLocalmin=-1;
