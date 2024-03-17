@@ -191,14 +191,13 @@ void Controller::control()
 
         d=g->calcTemporaryGoal();
 
-        if(!(d<0.01))
-        {
-            double tem[3];
-            g->getTemporaryGoal(tem);
-            setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);//temporary goal의 생성 기준이 필요하다...
-            state=idle;
-            updateGenerator();
-        }
+        // if(!(d<0.01))
+        // {
+        double tem[3];
+        g->getTemporaryGoal(tem);
+        setTemporaryGoal(tem[INDEX_X],tem[INDEX_Y],tem[INDEX_Q],d);//temporary goal의 생성 기준이 필요하다...
+        state=idle;
+        updateGenerator();
         getGoal(goal,false);
         g->setGoal(goal);
         double v_ref,q_ref,v,w;
