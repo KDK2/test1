@@ -86,7 +86,9 @@ void Generator::setGoal(double *gpos)
 void Generator::setPos(double *pos)
 {
     rPos[INDEX_X]=pos[INDEX_X];
+    rPos[INDEX_X]=addNoise(rPos[INDEX_X],0.02);
     rPos[INDEX_Y]=pos[INDEX_Y];
+    rPos[INDEX_Y]=addNoise(rPos[INDEX_Y],0.02);
     normalizeAngle(pos[INDEX_Q], rPos[INDEX_Q]);
 
     rPath.clear();
@@ -256,9 +258,9 @@ void Generator::predict(bool bStag)
 
         double ref=atan2(tForce[INDEX_Y],tForce[INDEX_X]);
         double x=px+delta*cos(ref);
-        x=addNoise(x,0.01);
+        //x=addNoise(x,0.01);
         double y=py+delta*sin(ref);
-        y=addNoise(y,0.01);
+        //y=addNoise(y,0.01);
         double q;
         normalizeAngle(ref,q);
         //q=addNoise(q,RAD(3.0));
