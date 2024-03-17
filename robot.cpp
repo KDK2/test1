@@ -41,7 +41,7 @@ Robot::Robot():
     double cgoal[SIZE_STATE];
 
     con.getPos(pos);
-    con.addGoal(3.0,3.0,0.0);//add global goal
+    con.addGoal(2.8,3.0,0.0);//add global goal
     con.getGoal(cgoal,true);
 
     sen=new Sensor(is);
