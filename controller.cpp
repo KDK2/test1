@@ -169,6 +169,9 @@ void Controller::control()
     Generator* pGen;//stagnation genarator
     double goal[3];
     getGoal(goal,true);
+    rPos[INDEX_X]=g->addNoise(rPos[INDEX_X],0.05);
+    rPos[INDEX_Y]=g->addNoise(rPos[INDEX_Y],0.05);
+    rPos[INDEX_Q]=g->addNoise(rPos[INDEX_Q],RAD(3.0));
     g->setPos(rPos);
     g->setGoal(goal);
     g->gen(Generator::prediction);
