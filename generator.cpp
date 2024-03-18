@@ -342,14 +342,13 @@ void Generator::getTemporaryGoal(double *pos)
 
 void Generator::normalizeAngle(double angle, double &dst)
 {
-    // Normalize angle to be within the range [0, 2π)
     angle = fmod(angle, 2.0 * M_PI);
-    // Shift angle to be within the range [-π, π)
-    if (angle > M_PI) {
+
+    if(angle>M_PI)
         angle -= 2.0 * M_PI;
-    } else if (angle < -M_PI) {
+    else if(angle<-M_PI)
         angle += 2.0 * M_PI;
-    }
+
     dst=angle;
 }
 
