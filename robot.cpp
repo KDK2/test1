@@ -23,7 +23,7 @@ Robot::Robot():
     ig.f_param.mparam.q_v=-1.0;
     ig.f_param.rparam.d_o=0.2;
     ig.f_param.rparam.d_oq=0.4;
-    ig.f_param.rparam.k_vo=1.0/(static_cast<double>(is.sparam.num_sensors)+85);
+    ig.f_param.rparam.k_vo=1.0/(static_cast<double>(is.sparam.num_sensors)+84);
     ig.f_param.rparam.q_o=-1.0;
     ig.f_param.qparam.k_vq=5.0*ig.f_param.rparam.k_vo;//d_o와 묶여있는 변수다.
     ig.f_param.qparam.q_q=-1.0;
